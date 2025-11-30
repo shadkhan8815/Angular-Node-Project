@@ -1,3 +1,4 @@
+
 import { Component } from '@angular/core';
 
 @Component({
@@ -7,12 +8,18 @@ import { Component } from '@angular/core';
 })
 export class SignupComponent {
 
-  firstName: any ="Akbar";
-  fName : any ="";
+  form: any = {
+    data: {}
+  }
 
-  signup(){
-    console.log("signup function called")
-    this.firstName = this.fName;
+  signUp() {
+    console.log('in signUp() function')
+    console.log('firstName==> ', this.form.data.firstName)
+    console.log('lastName===>', this.form.data.lastName)
+    console.log('login===>', this.form.data.login)
+    console.log('password===>', this.form.data.password)
+    console.log('dob===>', this.form.data.dob)
 
   }
+
 }

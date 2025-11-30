@@ -1,1 +1,25 @@
-<p align="center">login works..!</p>
+<div align="center" style="margin-top: 100px;" class="container">
+
+    <h2>Login</h2>
+
+<span>{{form.inputError}}</span>
+
+    <form (submit)="signIn()">
+        <table>
+            <tr>
+                <th>LoginId</th>
+                <td><input type="text" [(ngModel)]="form.data.login" name="login" placeholder="enter your email"></td>
+            </tr>
+            <tr>
+                <th>Password</th>
+                <td><input type="text" [(ngModel)]="form.data.password" name="password" placeholder="enter first name">
+                </td>
+            </tr>
+            <tr>
+                <th></th>
+                <td><input type="submit" value="signin"></td>
+            </tr>
+        </table>
+    </form>
+
+</div>

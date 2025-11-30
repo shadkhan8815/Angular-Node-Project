@@ -1,11 +1,49 @@
+<div align="center" style="margin-top: 100px;" class="container">
 
- <div align="center">   
-<h1>{{firstName}}</h1>
+    <h2>User Registration</h2>
 
+    <form (submit)="signUp()">
+        <table>
+            <tr>
+                <th>First Name</th>
+                <td><input type="text" [(ngModel)]="form.data.firstName" name="firstName"
+                        placeholder="enter first name">
+                </td>
+            </tr>
 
-<form (submit)="signup()">
+            <tr>
+                <th>Last Name</th>
+                <td><input type="text" [(ngModel)]="form.data.lastName" name="lastName" placeholder="enter last name">
+                </td>
+            </tr>
 
-    <input type="text" [(ngModel)]="fName" name="msg" placeholder="enter your first name"/> 
-    <input type="submit" name="save">
-</form>
+            <tr>
+                <th>LoginId</th>
+                <td><input type="text" [(ngModel)]="form.data.login" name="login" placeholder="enter your email"></td>
+            </tr>
+
+            <tr>
+                <th>Password</th>
+                <td><input type="text" [(ngModel)]="form.data.password" name="password" placeholder="enter first name">
+                </td>
+            </tr>
+
+            <tr>
+                <th>DOB</th>
+                <td><input type="date" [(ngModel)]="form.data.dob" name="dob"></td>
+            </tr>
+
+            <tr>
+                <th></th>
+                <td><input type="submit" value="signup"></td>
+            </tr>
+        </table>
+    </form>
+
+    {{form.firstName}}
+    {{form.lastName}}
+    {{form.login}}
+    {{form.password}}
+    {{form.dob}}
+
 </div>
