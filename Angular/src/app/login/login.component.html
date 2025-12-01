@@ -1,23 +1,28 @@
 <div align="center" style="margin-top: 100px;" class="container">
 
-    <h2>Login</h2>
+    <h2 style="color: blue;">Login</h2>
 
 <span>{{form.inputError}}</span>
 
     <form (submit)="signIn()">
         <table>
             <tr>
-                <th>LoginId</th>
-                <td><input type="text" [(ngModel)]="form.data.login" name="login" placeholder="enter your email"></td>
+                <th style="color: teal;">LoginId</th>
+                <td><input type="text" [(ngModel)]="form.data.loginId" name="loginId" placeholder="enter your email"></td>
             </tr>
             <tr>
-                <th>Password</th>
-                <td><input type="text" [(ngModel)]="form.data.password" name="password" placeholder="enter first name">
+                <th style="color: sandybrown;">Password</th>
+                <td><input type="text" [(ngModel)]="form.data.password" name="password" placeholder="enter password">
                 </td>
             </tr>
             <tr>
                 <th></th>
-                <td><input type="submit" value="signin"></td>
+                <td><input type="submit" value="SignIn">
+                &nbsp;&nbsp;
+                <button>
+                    <a style="text-decoration: none;" href="signup">SignUp</a>
+                </button>
+                </td>
             </tr>
         </table>
     </form>

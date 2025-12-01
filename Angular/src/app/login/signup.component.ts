@@ -1,5 +1,6 @@
 
 import { Component } from '@angular/core';
+import { HttpServiceService } from '../http-service.service';
 
 @Component({
   selector: 'app-signup',
@@ -7,6 +8,10 @@ import { Component } from '@angular/core';
   styleUrls: ['./signup.component.css']
 })
 export class SignupComponent {
+
+  constructor(private httpService: HttpServiceService) { }
+
+
 
   form: any = {
     data: {}
@@ -16,9 +21,13 @@ export class SignupComponent {
     console.log('in signUp() function')
     console.log('firstName==> ', this.form.data.firstName)
     console.log('lastName===>', this.form.data.lastName)
-    console.log('login===>', this.form.data.login)
+    console.log('login======>', this.form.data.login)
     console.log('password===>', this.form.data.password)
-    console.log('dob===>', this.form.data.dob)
+    console.log('dob========>', this.form.data.dob)
+
+    this.httpService.post('http://localhost:8080/Auth/signUp', this.form.data, (response: any) => {
+      console.log('response from signup api===>', response)
+    })
 
   }
 

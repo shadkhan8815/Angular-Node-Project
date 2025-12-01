@@ -1,5 +1,6 @@
 import { Component } from '@angular/core';
 import { Router } from '@angular/router';
+import { HttpServiceService } from '../http-service.service';
 
 @Component({
   selector: 'app-login',
@@ -13,20 +14,32 @@ export class LoginComponent {
     inputError:''
   }
 
-  constructor(public router: Router) {
+  constructor(public router: Router, private httpService: HttpServiceService) {
 
   }
 
   signIn() {
 
-    if (this.form.data.login == 'admin' && this.form.data.password == 'admin') {
-      this.router.navigateByUrl('welcome')
+  this.httpService.post('http://localhost:8080/Auth/login', this.form.data, (response: any) => {
+    console.log('response from signIn api===>', response);
+
+    console.log("login api response ===>", response);
+
+    // Universal success check
+    if (response && Object.keys(response).length !== 0) {
+
+      // Store user (optional)
+      localStorage.setItem("user", JSON.stringify(response));
+
+      // Redirect to welcome
+      this.router.navigate(['/welcome']);
     } else {
-      this.form.inputError = 'login or password is invalid'
-      this.router.navigateByUrl('login');
+      // Error message show karo
+      this.form.inputError = "Invalid LoginId or Password";
     }
 
-  }
+  });
 
+}
 
 }
