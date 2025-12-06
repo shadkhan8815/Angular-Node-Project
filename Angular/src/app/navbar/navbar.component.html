@@ -1,10 +1,30 @@
-<div style="margin-left: 10px;"> 
-
-<h2 style="color: black; font-size: 30px; margin-left: 5px;">Hi, Guest</h2>
-
-<a href="welcome" style="text-decoration: none; color:rgb(0, 100, 0);font-size: 20px;">Welcome</a> |
+<table>
+    <tr style="width: 100%;">
+        <td style="width: 98%;">
+            <div style="margin-left: 10px;" *ngIf="isLogin()">
+                <h3>Hi, {{form.data.firstName }} ( {{form.data.roleName}} )</h3>
+                <a href="user" style="text-decoration: none; color: hwb(266 2% 13%); font-size: 20px;">Add User</a> |
+                <a href="userList" style="text-decoration: none; color: hwb(180 0% 96%); font-size: 20px;">User List</a> |
+                <a (click)="logout()">
+                    <font color="red">Logout</font>
+                </a>
+            </div>
+            <div style="margin-left: 10px;" *ngIf="!isLogin()">
+                <h2 style="color: black; font-size: 30px; margin-left: 5px;">Hi, Guest</h2>
+               <a href="welcome" style="text-decoration: none; color:rgb(0, 100, 0);font-size: 20px;">Welcome</a> |
 <a href="login" style="text-decoration: none; color: hsl(0, 94%, 50%); font-size: 20px;">Login</a>
-
-</div>
-
+            </div>
+        </td>
+        <td style="width: 2%;">
+            <div *ngIf="isLogin()">
+                <img src="http://localhost:8080/User/profilePic/{{form.data.id}}" height="70px" width="150px">
+            </div>
+        </td>
+    </tr>
+</table>
 <hr style="margin-top: 10px; border: 1px solid #bdccd1;">
+
+
+
+
+

@@ -1,0 +1,59 @@
+<div class="container-fluid">
+    <h1 align="center" style="margin-bottom: -15; color: navy;">User
+        List</h1>
+
+    <h3 align="center">
+        <font color="green">{{form.message}}</font>
+    </h3>
+
+    <table>
+        <tr>
+            <th>First Name</th>
+            <td><input type="text" [(ngModel)]="form.searchParams.firstName" name="firstName"
+                    placeholder="enter first name">
+            </td>
+            <th>Role</th>
+            <td><select name="id" [(ngModel)]="form.searchParams.roleId" style="width: 90%;">
+                    <option [ngValue]="" value="undefined">{{'--------Select Role---------' }}</option>
+                    <option *ngFor="let obj of form.preload" [value]="obj.key">{{obj.value}}</option>
+                </select>
+            </td>
+            <td>
+                <button (click)="search()">search</button>
+            </td>
+        </tr>
+    </table>
+
+    <br>
+    <table border="1" style="width: 100%;">
+        <tr align="center" style="background-color: lightblue;">
+            <th width="1%">Select</th>
+            <th width="5%">S.No</th>
+            <th width="1%">Image</th>
+            <th width="13%">FirstName</th>
+            <th width="13%">LastName</th>
+            <th width="13%">LoginId</th>
+            <th width="13%">DOB</th>
+            <th width="13%">Role</th>
+        </tr>
+        <tr *ngFor="let m of form.list; let i = index" style="background-color: lightgrey;">
+            <td align="center"><input type="checkbox" (click)="onClickCheckBox(m.id)"></td>
+            <td style="text-align: center;">{{(form.pageNo*5)+i+ 1}}</td>
+            <td> <img src="http://localhost:8080/User/profilePic/{{m.id}}" height="55px" width="80px"></td>
+            <td style="text-align: center;">{{m.firstName}}</td>
+            <td style="text-align: center;">{{m.lastName}}</td>
+            <td style="text-align: center;">{{m.loginId}}</td>
+            <td style="text-align: center;">{{m.dob | date: 'dd-MM-yyyy'}}</td>
+            <td style="text-align: center;">{{m.roleName}}</td>
+        </tr>
+    </table>
+    <br>
+    <table width="100%">
+        <tr>
+            <td><button [disabled]="form.pageNo == 0" (click)="previous()">previous</button></td>
+            <td><button (click)="delete()">delete</button></td>
+            <td align="right"><button [disabled]="form.list.length < 5" (click)="next()">next</button></td>
+        </tr>
+    </table>
+</div>
+

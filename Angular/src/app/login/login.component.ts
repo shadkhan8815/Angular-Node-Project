@@ -11,7 +11,8 @@ export class LoginComponent {
 
   form: any = {
     data: {},
-    inputError:''
+    inputError:'',
+    message: ''
   }
 
   constructor(public router: Router, private httpService: HttpServiceService) {
@@ -20,26 +21,32 @@ export class LoginComponent {
 
   signIn() {
 
-  this.httpService.post('http://localhost:8080/Auth/login', this.form.data, (response: any) => {
-    console.log('response from signIn api===>', response);
+     var self = this;
 
-    console.log("login api response ===>", response);
+  this.httpService.post('http://localhost:8080/Auth/login', this.form.data, function (response: any) {
+  
+    console.log("data == > ", response.result.data);
+      console.log("message == > ", response.result.message)
+      console.log("success ==> ", response.success)
+      console.log("inputerror ==> ", response.result.inputerror)
 
-    // Universal success check
-    if (response && Object.keys(response).length !== 0) {
+      if (!response.success && response.result.message) {
+        self.form.message = response.result.message
+      }
 
-      // Store user (optional)
-      localStorage.setItem("user", JSON.stringify(response));
+      if (response.result.inputerror) {
+        self.form.inputerror = response.result.inputerror;
+      }
 
-      // Redirect to welcome
-      this.router.navigate(['/welcome']);
-    } else {
-      // Error message show karo
-      this.form.inputError = "Invalid LoginId or Password";
-    }
+      if (response.success) {
+        localStorage.setItem('firstName', response.result.data.firstName);
+        localStorage.setItem('roleName', response.result.data.roleName);
+        localStorage.setItem('id', response.result.data.id);
+        self.router.navigateByUrl('welcome');
+      }
 
-  });
+    })
 
-}
+  }
 
 }

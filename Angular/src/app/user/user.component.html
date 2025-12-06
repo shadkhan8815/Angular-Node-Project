@@ -1,0 +1,77 @@
+<div align="center" style="margin-top: 100px;" class="container">
+
+    <h1>User Registration</h1>
+
+    <h2 style="color: green;">{{form.message}}</h2>
+
+    <form (submit)="save()">
+        <table>
+            <tr>
+                <th>First Name</th>
+                <td><input style="width: 90%;" type="text" [(ngModel)]="form.data.firstName" name="firstName"
+                        placeholder="enter first name">
+                </td>
+                <td *ngIf="form.inputerror.firstName != null">
+                    <font color="red">
+                        {{form.inputerror.firstName}}
+                    </font>
+                </td>
+            </tr>
+
+            <tr>
+                <th>Last Name</th>
+                <td><input style="width: 90%;" type="text" [(ngModel)]="form.data.lastName" name="lastName" placeholder="enter last name">
+                </td>
+                <td *ngIf="form.inputerror.lastName != null">
+                    <font color="red">
+                        {{form.inputerror.lastName}}
+                    </font>
+                </td>
+            </tr>
+            <tr>
+                <th>Role</th>
+                <td><select name="id" [(ngModel)]="form.data.roleId" style="width: 90%;">
+                        <option [ngValue]="" value="undefined">{{'--------Select Role---------' }}</option>
+                        <option *ngFor="let obj of form.preload" [value]="obj.key">{{obj.value}}</option>
+                    </select>
+                </td>
+            </tr>
+            <tr>
+                <th>LoginId</th>
+                <td><input style="width: 90%;" type="text" [(ngModel)]="form.data.loginId" name="loginId" placeholder="enter your email">
+                </td>
+                <td *ngIf="form.inputerror.loginId != null">
+                    <font color="red">
+                        {{form.inputerror.loginId}}
+                    </font>
+                </td>
+            </tr>
+
+            <tr>
+                <th>Password</th>
+                <td><input style="width: 90%;" type="text" [(ngModel)]="form.data.password" name="password" placeholder="enter password">
+                </td>
+                <td *ngIf="form.inputerror.password != null">
+                    <font color="red">
+                        {{form.inputerror.password}}
+                    </font>
+                </td>
+            </tr>
+
+            <tr>
+                <th>DOB</th>
+                <td><input style="width: 90%;" type="date" [(ngModel)]="form.data.dob" name="dob"></td>
+                <td *ngIf="form.inputerror.dob != null">
+                    <font color="red">
+                        {{form.inputerror.dob}}
+                    </font>
+                </td>
+            </tr>
+
+            <tr>
+                <th></th>
+                <td><input type="submit" value="signup"></td>
+            </tr>
+        </table>
+    </form>
+</div>
