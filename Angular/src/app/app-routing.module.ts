@@ -39,6 +39,11 @@ component:SignupComponent
     component: UserListComponent
   },
 
+  {
+    path: 'user/:id',
+    component: UserComponent
+  }
+
 ];
 
 @NgModule({

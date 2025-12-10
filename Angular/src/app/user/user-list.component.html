@@ -1,9 +1,11 @@
+
 <div class="container-fluid">
     <h1 align="center" style="margin-bottom: -15; color: navy;">User
         List</h1>
 
     <h3 align="center">
         <font color="green">{{form.message}}</font>
+        <font color="red">{{form.errormessage}}</font>
     </h3>
 
     <table>
@@ -35,6 +37,7 @@
             <th width="13%">LoginId</th>
             <th width="13%">DOB</th>
             <th width="13%">Role</th>
+            <th width="5%">Edit</th>
         </tr>
         <tr *ngFor="let m of form.list; let i = index" style="background-color: lightgrey;">
             <td align="center"><input type="checkbox" (click)="onClickCheckBox(m.id)"></td>
@@ -45,6 +48,8 @@
             <td style="text-align: center;">{{m.loginId}}</td>
             <td style="text-align: center;">{{m.dob | date: 'dd-MM-yyyy'}}</td>
             <td style="text-align: center;">{{m.roleName}}</td>
+            <td style="text-align: center;"> <a (click)="edit( '/user/' +  m.id)" style="color: blue;">edit
+                </a></td>
         </tr>
     </table>
     <br>
@@ -56,4 +61,3 @@
         </tr>
     </table>
 </div>
-

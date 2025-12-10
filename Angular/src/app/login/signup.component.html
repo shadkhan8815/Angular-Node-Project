@@ -2,6 +2,9 @@
     
     <h1 style="margin-top: 2px; color: darkslategrey;">User Registration</h1>
 
+        <h2>{{form.message}}</h2>
+        <h3 style="color:red;">{{form.inputError}}</h3>
+
     <form (submit)="signUp()">
         <table>
             <tr>
@@ -24,7 +27,7 @@
 
             <tr>
                 <th style="color:tomato" >Password</th>
-                <td><input type="text" [(ngModel)]="form.data.password" name="password" placeholder="enter first name">
+                <td><input type="text" [(ngModel)]="form.data.password" name="password" placeholder="enter password">
                 </td>
             </tr>
 

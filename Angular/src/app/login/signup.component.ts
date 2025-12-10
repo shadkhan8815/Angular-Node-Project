@@ -14,7 +14,9 @@ export class SignupComponent {
 
 
   form: any = {
-    data: {}
+    data: {},
+    inputError: '',
+    message: ''
   }
 
   signUp() {
@@ -27,6 +29,17 @@ export class SignupComponent {
 
     this.httpService.post('http://localhost:8080/Auth/signUp', this.form.data, (response: any) => {
       console.log('response from signup api===>', response)
+      if (!response.success && response.result.message) {
+        this.form.message = response.result.message
+      }
+
+      if (response.result.inputerror) {
+        this.form.inputError = response.result.inputerror;
+      }
+
+      if (response.success) {
+        this.form.message = 'Signup successful! Please login.';
+      }
     })
 
   }
